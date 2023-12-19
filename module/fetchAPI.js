@@ -14,13 +14,3 @@ catch(err){
 };
 
 export{fetchTmdb};
-
-// fetch(url)
-//   .then((res) => res.json())
-//   .then(log)
-//   .catch((err) => console.error("error:" + err));
-// };
-
-// function log(x){
-//   console.log(x.results)
-// }

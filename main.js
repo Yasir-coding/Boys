@@ -1,30 +1,43 @@
 import { fetchTmdb } from './module/fetchAPI.js';
 import { displayTenMovies } from './module/display.js';
+import { displayPageOneMovies } from './module/display.js';
+import { displayActors } from './module/display.js';
 
-const form = document.querySelector('form');
-form.addEventListener('click', async event => {
+const searchBar = document.getElementById('searchForm')
+const topTenMovies = document.getElementById('topTenMovies');
+
+searchBar.addEventListener('submit', async event => {
     event.preventDefault();
-    if(event.target.id == 'searchBtn'){
-        console.log('cat');
+
+    let textSearch = document.getElementById('textSearch').value;
+    let btnMovie = document.getElementById('movieBtn').checked;
+    let btnActor = document.getElementById('actorBtn').checked;
+
+    if(btnMovie === true){
+        let movieList = await fetchTmdb(`https://api.themoviedb.org/3/search/movie?query=${textSearch}&include_adult=false&language=en-US&api_key=`);
+        displayPageOneMovies(movieList)
+        searchBar.reset();
     }
-    else if(event.target.id == 'popularBtn'){
+    else if(btnActor === true){
+        let actorList = await fetchTmdb(`https://api.themoviedb.org/3/search/person?query=${textSearch}&include_adult=false?language=en-US&api_key=`);
+        displayActors(actorList);
+        console.log(actorList);
+        searchBar.reset();
+    }
+    else{
+        alert('Please choose Movie or Actor!')
+    };
+});
+
+topTenMovies.addEventListener('click', async event => {
+    event.preventDefault();
+
+    if(event.target.id == 'popularBtn'){
         let popularMovieArray = await fetchTmdb(`https://api.themoviedb.org/3/movie/popular?language=en-US&api_key=`);
         displayTenMovies(popularMovieArray);
-        console.log(popularMovieArray)
     }
     else if(event.target.id == 'topRatedBtn'){
         let topRatedMovieArray = await fetchTmdb(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&api_key=`);
         displayTenMovies(topRatedMovieArray);
-        console.log(topRatedMovieArray)
     };
 });
-
-// function log(x){
-//     console.log(x)
-// }
-
-// async function test(){
-//     const x = await fetchTmdb(`https://api.themoviedb.org/3/movie/popular?language=en-US&api_key=`);
-//     console.log(x);
-// }
-// test();
