@@ -9,9 +9,17 @@
   <title>Document</title>
 </head>
 <body>
-  <form id="mainForm">
-    <input type="text" placeholder="Person or movie">
+
+  <form id="searchForm">
+    <input type="text" id="textInputSearch" placeholder="Person or movie">
+    <input type="radio" id="rbMovies" name="rb">
+    <label> Movie</label>
+    <input type="radio" id="rbName" name="rb">
+    <label> Name</label>
     <button id="searchBtn">Search</button>
+  </form>
+
+  <form id="mainForm">
     <button id="searchPopularBtn">Popular</button>
     <button id="searchTopRatedBtn">Top rated</button>
   </form>
