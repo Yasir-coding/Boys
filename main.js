@@ -1,7 +1,5 @@
-import { fetchTmdb } from './module/fetchAPI.js';
-import { displayTenMovies } from './module/display.js';
-import { displayPageOneMovies } from './module/display.js';
-import { displayActors } from './module/display.js';
+import {fetchTmdb} from './module/fetchAPI.js';
+import {displayTenMovies, displayPageOneMovies, displayActors} from './module/display.js';
 
 const searchBar = document.getElementById('searchForm')
 const topTenMovies = document.getElementById('topTenMovies');
@@ -15,17 +13,16 @@ searchBar.addEventListener('submit', async event => {
 
     if(btnMovie === true){
         let movieList = await fetchTmdb(`https://api.themoviedb.org/3/search/movie?query=${textSearch}&include_adult=false&language=en-US&api_key=`);
-        displayPageOneMovies(movieList)
+        displayPageOneMovies(movieList);
         searchBar.reset();
     }
     else if(btnActor === true){
         let actorList = await fetchTmdb(`https://api.themoviedb.org/3/search/person?query=${textSearch}&include_adult=false?language=en-US&api_key=`);
         displayActors(actorList);
-        console.log(actorList);
         searchBar.reset();
     }
     else{
-        alert('Please choose Movie or Actor!')
+        alert('Please choose Movie or Actor!');
     };
 });
 

@@ -29,7 +29,12 @@ function displayPageOneMovies(movieList){
         movieTitleH1El.innerText = movieList[i].title;
         releaseDateH2El.innerHTML = `Release date: ${movieList[i].release_date}`;
         overviewPEl.innerHTML = movieList[i].overview;
-        moviePosterImgEl.src = `https://www.themoviedb.org/t/p/w300${movieList[i].poster_path}`;
+        if(movieList[i].poster_path === null){
+            moviePosterImgEl.src = './Images/ImageNotFound.jpeg';
+        }
+        else{
+            moviePosterImgEl.src = `https://www.themoviedb.org/t/p/w300${movieList[i].poster_path}`;
+        };
 
         containerDiv.appendChild(divEl);
         divEl.append(movieTitleH1El, releaseDateH2El, overviewPEl, moviePosterImgEl);
@@ -41,22 +46,35 @@ function displayActors(actorList){
     for(let i = 0; i < actorList.length; i++){
         let divEl = document.createElement('div');
         let actorNameH1El = document.createElement('h1');
-        let actorKnownForH2El = document.createElement('h2')
-        let paricipatedInPEl = document.createElement('p');
         let actorImgEl = document.createElement('img');
+        let actorKnownForH2El = document.createElement('h2')
+        let participatedInDiv = document.createElement('div');
 
         actorNameH1El.innerText = actorList[i].name;
+        if(actorList[i].profile_path === null){
+            actorImgEl.src = './Images/ImageNotFound.jpeg';
+        }
+        else{
+            actorImgEl.src = `https://www.themoviedb.org/t/p/w300${actorList[i].profile_path}`;
+        };
         actorKnownForH2El.innerText = `Known for: ${actorList[i].known_for_department}`;
-        paricipatedInPEl.innerText = actorList[i].known_for[0].title;
-        actorImgEl.src = `https://www.themoviedb.org/t/p/w300${actorList[i].profile_path}`;
+        for(let j = 0; j < actorList[i].known_for.length; j++){
+            let participatedInPEl = document.createElement('p');
+            if(actorList[i].known_for[j] == undefined){
+                participatedInPEl.innerText = '';
+            }
+            else if(actorList[i].known_for[j].title == undefined){
+                participatedInPEl.innerText = `${actorList[i].known_for[j].media_type}: ${actorList[i].known_for[j].name}`;
+            }
+            else{
+                participatedInPEl.innerText = `${actorList[i].known_for[j].media_type}: ${actorList[i].known_for[j].title}`;
+            };
+            participatedInDiv.appendChild(participatedInPEl);
+        };
 
         containerDiv.appendChild(divEl);
-        divEl.append(actorNameH1El, actorKnownForH2El, paricipatedInPEl, actorImgEl);
+        divEl.append(actorNameH1El, actorImgEl, actorKnownForH2El, participatedInDiv);
     };
 };
 
-export{displayActors};
-export{displayPageOneMovies};
-export{displayTenMovies};
-
-// (known_for[array] :: media_type, title)
+export{displayActors, displayPageOneMovies, displayTenMovies};
