@@ -16,7 +16,7 @@ form.addEventListener('submit', searchHandler)
 
 async function searchHandler(event) {
     event.preventDefault();
-    // removePrevSearchResult();
+    removePrevSearchResult();
     const searchInput = document.querySelector('#input').value;
     const searchType = document.querySelector('input[type="radio"]:checked').value;
     if (searchType === 'movie') {
