@@ -4,16 +4,16 @@ function displayTenMovies(movieList){
     containerDiv.innerHTML = '';
     for (let i = 0; i < 10; i++) {
         let divEl = document.createElement('div');
+        let moviePosterImgEl = document.createElement('img');
         let movieTitleH1El = document.createElement('h1');
         let releaseDateH2El = document.createElement('h2');
-        let moviePosterImgEl = document.createElement('img');
 
+        moviePosterImgEl.src = `https://www.themoviedb.org/t/p/w300${movieList[i].poster_path}`;
         movieTitleH1El.innerText = movieList[i].title;
         releaseDateH2El.innerHTML = `Release date: ${movieList[i].release_date}`;
-        moviePosterImgEl.src = `https://www.themoviedb.org/t/p/w300${movieList[i].poster_path}`;
 
         containerDiv.appendChild(divEl);
-        divEl.append(movieTitleH1El, releaseDateH2El, moviePosterImgEl);
+        divEl.append(moviePosterImgEl, movieTitleH1El, releaseDateH2El);
     };
 };
 
@@ -21,23 +21,23 @@ function displayPageOneMovies(movieList){
     containerDiv.innerHTML = '';
     for(let i = 0; i < movieList.length; i++){
         let divEl = document.createElement('div');
+        let moviePosterImgEl = document.createElement('img');
         let movieTitleH1El = document.createElement('h1');
         let releaseDateH2El = document.createElement('h2');
         let overviewPEl = document.createElement('p');
-        let moviePosterImgEl = document.createElement('img');
 
-        movieTitleH1El.innerText = movieList[i].title;
-        releaseDateH2El.innerHTML = `Release date: ${movieList[i].release_date}`;
-        overviewPEl.innerHTML = movieList[i].overview;
         if(movieList[i].poster_path === null){
             moviePosterImgEl.src = './Images/ImageNotFound.jpeg';
         }
         else{
             moviePosterImgEl.src = `https://www.themoviedb.org/t/p/w300${movieList[i].poster_path}`;
         };
+        movieTitleH1El.innerText = movieList[i].title;
+        releaseDateH2El.innerHTML = `Release date: ${movieList[i].release_date}`;
+        overviewPEl.innerHTML = movieList[i].overview;
 
         containerDiv.appendChild(divEl);
-        divEl.append(movieTitleH1El, releaseDateH2El, overviewPEl, moviePosterImgEl);
+        divEl.append(moviePosterImgEl, movieTitleH1El, releaseDateH2El, overviewPEl);
     };
 };
 
@@ -45,18 +45,18 @@ function displayActors(actorList){
     containerDiv.innerHTML = '';
     for(let i = 0; i < actorList.length; i++){
         let divEl = document.createElement('div');
-        let actorNameH1El = document.createElement('h1');
         let actorImgEl = document.createElement('img');
+        let actorNameH1El = document.createElement('h1');
         let actorKnownForH2El = document.createElement('h2')
         let participatedInDiv = document.createElement('div');
 
-        actorNameH1El.innerText = actorList[i].name;
         if(actorList[i].profile_path === null){
             actorImgEl.src = './Images/ImageNotFound.jpeg';
         }
         else{
             actorImgEl.src = `https://www.themoviedb.org/t/p/w300${actorList[i].profile_path}`;
         };
+        actorNameH1El.innerText = actorList[i].name;
         actorKnownForH2El.innerText = `Known for: ${actorList[i].known_for_department}`;
         for(let j = 0; j < actorList[i].known_for.length; j++){
             let participatedInPEl = document.createElement('p');
@@ -73,8 +73,28 @@ function displayActors(actorList){
         };
 
         containerDiv.appendChild(divEl);
-        divEl.append(actorNameH1El, actorImgEl, actorKnownForH2El, participatedInDiv);
+        divEl.append(actorImgEl, actorNameH1El, actorKnownForH2El, participatedInDiv);
     };
 };
 
-export{displayActors, displayPageOneMovies, displayTenMovies};
+function displayCategoryError(category, searchResult){
+    containerDiv.innerHTML = '';
+    let h1ElCreate = document.createElement('h1');
+
+    if(!searchResult.trim()){
+        h1ElCreate.innerText = `Please enter a name!`;
+    }
+    else{
+        h1ElCreate.innerText = `${category} ${searchResult} not found!`;
+    }
+    containerDiv.appendChild(h1ElCreate);
+};
+
+function displayFetchError(error){
+    containerDiv.innerHTML = '';
+    let h1ElCreate = document.createElement('h1');
+    h1ElCreate.innerText = `${error}`;
+    containerDiv.append(h1ElCreate);
+};
+
+export{displayActors, displayPageOneMovies, displayTenMovies, displayCategoryError, displayFetchError};
