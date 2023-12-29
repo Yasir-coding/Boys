@@ -10,19 +10,23 @@
     border-bottom: black solid 2px;
 }
 
-#searchForm {
-    display: flex;
-    justify-content: center;
-}
-
-#topTenMovies {
-    display: flex;
-    justify-content: center;
-}
-
 #container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
     padding: 25px 25px;
+}
+
+.centerElements {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.smallSpace {
+    margin: 5px;
+}
+
+.marginLeft {
+    margin-left: 20px;
 }

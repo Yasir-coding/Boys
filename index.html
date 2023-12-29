@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slutprojekt</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script type="module" src="main.js" defer></script>
+    <title>FMDB Slutprojekt</title>
+    <script src="./lib/anime.min.js"></script>
+    <script type="module" src="./main.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <header id="header">
-        <form id="searchForm">
-            <input type="text" id="textSearch" placeholder="Search">
-            <input type="radio" name="radioBtn" id="movieBtn">
-            <label>Movie</label>
-            <input type="radio" name="radioBtn" id="actorBtn">
-            <label>Actor</label>
-            <button id="searchBtn">Search</button>
+        <div class="centerElements">
+            <h1>F</h1>
+            <h1>M</h1>
+            <h1>D</h1>
+            <h1>B</h1>
+        </div>
+        <form id="searchForm" class="centerElements">
+            <input type="text" id="textSearch" placeholder="Search" class="smallSpace">
+            <input type="radio" name="radioBtn" id="movieBtn" class="marginLeft">
+            <label class="smallSpace">Movie</label>
+            <input type="radio" name="radioBtn" id="actorBtn" class="marginLeft">
+            <label class="smallSpace">Actor</label>
+            <button id="searchBtn" class="smallSpace marginLeft">Search</button>
         </form>
-        <form id="topTenMovies">
-            <button id="popularBtn">Popular Movies</button>
-            <button id="topRatedBtn">Top Rated Movies</button>
+        <form id="topTenMovies" class="centerElements">
+            <button id="popularBtn" class="smallSpace">Popular Movies</button>
+            <button id="topRatedBtn" class="smallSpace">Top Rated Movies</button>
         </form>
     </header>
         <div id="container"></div>

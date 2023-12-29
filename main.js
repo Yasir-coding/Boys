@@ -50,3 +50,14 @@ topTenMovies.addEventListener('click', async event => {
         displayTenMovies(topRatedMovieArray);
     };
 });
+
+let websiteTitleAnimation = {
+    targets: '.centerElements h1',
+    translateY: '-10px',
+    easing: 'easeOutQuad',
+    delay: anime.stagger(100),
+    direction: 'alternate',
+    loop: true,
+}
+
+anime(websiteTitleAnimation)
