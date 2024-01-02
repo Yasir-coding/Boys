@@ -90,10 +90,10 @@ function displayCategoryError(category, searchResult){
     containerDiv.appendChild(h1ElCreate);
 };
 
-function displayFetchError(error){
+function displayFetchError(){
     containerDiv.innerHTML = '';
     let h1ElCreate = document.createElement('h1');
-    h1ElCreate.innerText = `${error}`;
+    h1ElCreate.innerText = `Something went wrong! Connection problems or database problems.`;
     containerDiv.append(h1ElCreate);
 };
 
