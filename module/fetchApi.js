@@ -12,13 +12,13 @@ async function fetchTmdb(urlApi) {
     const data = await result.json();
 
     if (data.results.length === 0) {
-      return "not found"
+      return "not found";
     } else {
       return data.results;
     }
   }
   catch {
-    return displayFetchError()
+    return displayFetchError();
   }
 
 }

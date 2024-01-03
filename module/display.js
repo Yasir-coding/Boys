@@ -7,7 +7,7 @@ function displayInfo(movieList) {
     let imgEl = document.createElement("img");
 
     if (movieList[i].poster_path == null) {
-      imgEl.src = "/images/handsome.svg"
+      imgEl.src = "/images/handsome.svg";
     } else {
       imgEl.src = `https://image.tmdb.org/t/p/w300/${movieList[i].poster_path}`;
     }
@@ -39,7 +39,7 @@ function displayInfoSearch(movieList) {
   for (let i = 0; i < movieList.length; i++) {
     let imgEl = document.createElement("img");
     if (movieList[i].poster_path == null) {
-      imgEl.src = "/images/handsome.svg"
+      imgEl.src = "/images/handsome.svg";
     } else {
       imgEl.src = `https://image.tmdb.org/t/p/w300/${movieList[i].poster_path}`;
     }
@@ -60,8 +60,8 @@ function displayInfoSearch(movieList) {
 
     box.append(imgEl, titleH3, releaseDateH5, descriptionP);
 
-    slideBoxes(box)
-    resultDiv.append(box)
+    slideBoxes(box);
+    resultDiv.append(box);
   }
 }
 
@@ -122,7 +122,7 @@ function displayCategoryError(category, textInputSearch) {
 
   errorH1El.style.textAlign = "center";
 
-  resultDiv.append(errorH1El)
+  resultDiv.append(errorH1El);
 
 }
 
@@ -147,7 +147,7 @@ function displayFetchError() {
       ],
       easing: 'easeOutElastic(1, .8)'
       }
-      anime(slide)
+      anime(slide);
   }
 
 

@@ -17,7 +17,7 @@ mainForm.addEventListener("click", async event => {
   else if (event.target.id == "searchTopRatedBtn" && topRatedMovies != undefined) {
     displayInfo(topRatedMovies);
   }
-})
+});
 
 searchForm.addEventListener("submit", async event => {
   event.preventDefault();
@@ -51,8 +51,8 @@ searchForm.addEventListener("submit", async event => {
     searchForm.reset();
 
   } else {
-    alert("please select name och movies")
-  }
-})
+    alert("please select name och movies");
+  };
+});
 
 
