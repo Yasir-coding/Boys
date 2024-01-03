@@ -1,4 +1,4 @@
-import { displayActor, displayCategoryError, displayFetchError, displayInfo, displayInfoSearch } from "./module/display.js";
+import { displayActor, displayCategoryError, displayInfo, displayInfoSearch } from "./module/display.js";
 import { fetchTmdb } from "./module/fetchApi.js";
 
 const mainForm = document.querySelector("#mainForm");
@@ -12,12 +12,10 @@ mainForm.addEventListener("click", async event => {
   let topRatedMovies = await fetchTmdb(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=`);
 
   if (event.target.id == "searchPopularBtn" && popularMovies != undefined) {
-    displayInfo(popularMovies)
-    console.log(popularMovies)
-
+    displayInfo(popularMovies);
   }
   else if (event.target.id == "searchTopRatedBtn" && topRatedMovies != undefined) {
-    displayInfo(topRatedMovies)
+    displayInfo(topRatedMovies);
   }
 })
 

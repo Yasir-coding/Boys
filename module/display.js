@@ -7,7 +7,7 @@ function displayInfo(movieList) {
     let imgEl = document.createElement("img");
 
     if (movieList[i].poster_path == null) {
-      imgEl.src = "/images/documentary.svg"
+      imgEl.src = "/images/handsome.svg"
     } else {
       imgEl.src = `https://image.tmdb.org/t/p/w300/${movieList[i].poster_path}`;
     }
@@ -24,9 +24,10 @@ function displayInfo(movieList) {
     box.classList.add("boxStyle");
 
     box.append(imgEl, titleH3, releaseDateH5);
-    // test(box)
+    
+    slideBoxes(box);
 
-    resultDiv.append(box)
+    resultDiv.append(box);
 
   }
 
@@ -38,7 +39,7 @@ function displayInfoSearch(movieList) {
   for (let i = 0; i < movieList.length; i++) {
     let imgEl = document.createElement("img");
     if (movieList[i].poster_path == null) {
-      imgEl.src = "/images/documentary.svg"
+      imgEl.src = "/images/handsome.svg"
     } else {
       imgEl.src = `https://image.tmdb.org/t/p/w300/${movieList[i].poster_path}`;
     }
@@ -55,10 +56,11 @@ function displayInfoSearch(movieList) {
     descriptionP.innerText = movieList[i].overview;
 
     let box = document.createElement("div");
-    console.log("test")
     box.classList.add("boxStyle");
 
     box.append(imgEl, titleH3, releaseDateH5, descriptionP);
+
+    slideBoxes(box)
     resultDiv.append(box)
   }
 }
@@ -69,7 +71,7 @@ function displayActor(actorInfo) {
     let imgEl = document.createElement("img");
 
     if (actorInfo[i].profile_path == null) {
-      imgEl.src = "/images/handsome.jpg";
+      imgEl.src = "/images/handsome.svg";
     } else {
       imgEl.src = `https://image.tmdb.org/t/p/w500/${actorInfo[i].profile_path}`;
     }
@@ -102,7 +104,8 @@ function displayActor(actorInfo) {
 
     box.classList.add("boxStyle");
     box.append(imgEl, actorNameH3, knownForDepartmentH4, participatedInDiv);
-    resultDiv.append(box)
+    slideBoxes(box);
+    resultDiv.append(box);
   }
 }
 
@@ -117,28 +120,35 @@ function displayCategoryError(category, textInputSearch) {
     errorH1El.innerText = category + textInputSearch + " not found";
   }
 
+  errorH1El.style.textAlign = "center";
+
   resultDiv.append(errorH1El)
 
 }
 
 
-function displayFetchError(error) {
+function displayFetchError() {
   resultDiv.innerHTML = "";
   let errorH1El = document.createElement("h1");
-  errorH1El.innerText = error;
+  errorH1El.innerText = "Something went wrong with the network or database, Please try again later";
 
-  resultDiv.append(errorH1El)
-  console.log(error);
+  errorH1El.style.textAlign = "center";
+
+  resultDiv.append(errorH1El);
 }
 
 
-function test(box) {
-  const keyframeAnimation2 = {
-    targets: box,
+  function slideBoxes(box) {
+    const slide = {
+      targets: box,
+      keyframes: [
+        {translateX: -2000, duration: 0.1},
+        {translateX: 0, duration: 4000},
+      ],
+      easing: 'easeOutElastic(1, .8)'
+      }
+      anime(slide)
   }
-
-  anime(keyframeAnimation2)
-}
 
 
 
